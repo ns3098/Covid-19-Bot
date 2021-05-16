@@ -29,3 +29,10 @@ $ rasa run actions
 ## Improvements
 Due to the lack of stories and examples data, I couldn't add more features like finding CoVID-19 Testing Lab, hospitals and centers, Shelters and Free food. 
 Actions for these features are added in actions.py file. Might complete later when time permits :).
+
+<p align="center">
+  <img src="/screenshots/Screenshot from 2021-05-17 00-00-02.png">
+</p>
+<p align="center">
+  <img src="/screenshots/Screenshot from 2021-05-17 00-03-01.png">
+</p>
