@@ -188,3 +188,113 @@ class Actioncoronastats(Action):
             except Exception as e:
                 dispatcher.utter_message("I am sorry something went wrong from my side. I am not so smart as of now. Trying to learn from humans.")
                 return []
+
+
+# covid_facilities = requests.get('https://api.covid19india.org/resources/resources.json')
+# facilities_json= covid_facilities.json()
+
+
+# # Defining few functions which aid in giving the testcenters,hospitals,shelterhomes,freefoods availability by state 
+
+# def get_testcenters_by_state(state):
+#     facilities = []
+#     for res in facilities_json['resources']:
+#         if res['category'].lower() == 'CoVID-19 Testing Lab'.lower() and res['state'].lower() == state.lower():
+#             facilities.append(res['nameoftheorganisation']+", "+res['city']+", "+res['state']+", "+"Phone: "+res['phonenumber'])
+#     return facilities
+
+# def get_hospitals_by_state(state):
+#     facilities = []
+#     for res in facilities_json['resources']:
+#         if res['category'].lower() == 'hospitals and centers' and res['state'].lower()== state.lower():
+#             facilities.append(res['nameoftheorganisation']+", "+res['city']+", "+res['state']+", "+res['phonenumber'])
+#     return facilities
+
+# def get_shelterhomes_by_state(state):
+#     facilities = []
+#     for res in facilities_json['resources']:
+#         if res['category'].lower()== 'accommodation and shelter homes' and res['state'].lower()== state.lower():
+#             facilities.append(res['nameoftheorganisation']+", "+res['city']+", "+res['state']+", "+"Phone: "+res['phonenumber'])
+#     return facilities 
+
+
+# def get_freefoods_by_state(state):
+#     facilities = []
+#     for res in facilities_json['resources']:
+#         if (res['category'].lower() == 'free food' or res['category'].lower() == 'community kitchen') and res['state']== state.title():
+#             facilities.append(res['nameoftheorganisation']+", "+res['city']+", "+res['state']+", "+"Phone: "+res['phonenumber'])
+#     return facilities 
+
+
+# class ActionFacilitySearch(Action):
+#     """
+#     This is a Custom action Class which gives the details of available facilities in a given state like testcenters, hospitals, shelter homes, freefood availability.
+#     """
+#     def name(self) -> Text:
+#         return "action_facility_search"
+
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         try:
+#             facility = tracker.get_slot("facility_type")
+#             location = tracker.get_slot("prev_selected")
+
+#             if not location:
+#                 dispatcher.utter_message("Ohhoo you haven't checked any Covid cases for any state/pincode. Pardon me but I don't have enough data for you now.")
+#                 return []
+#             value = location.split('@')
+#             if value[0] == 'pincode':
+#                 res = requests.get(postal_api + value[1]).json()
+#                 msg = jsonpath(res, '$..Message')[0] != 'No records found'
+#                 if msg:
+#                     state = jsonpath(res, '$..PostOffice.*.State')[0]
+#                     state = re.sub("\(.*?\)","",state).replace('&', 'and')
+#                     state = state_map.get(state, state).title()
+#                 else:
+#                     dispatcher.utter_message("No data found for this Pincode. Make sure it is correct.")
+#                     return []
+
+#             print("Tracked Facility: "+facility)
+#             print("Tracked Location: "+state)
+#             # Validating the type of facility user asks for and gives the details of free food availabilty.
+#             if facility == "free food":
+#                 facilities_state = get_freefoods_by_state(state)
+#                 if len(facilities_state) != 0:
+#                     allfacilities = "\n".join(facilities_state)
+#                     dispatcher.utter_message("Hey, here is the address of the {} facilities in {}:- \n {}".format(facility, state, allfacilities))
+#                 else:
+#                     dispatcher.utter_message("Sorry! No {} found in {}".format(facility,state))
+            
+#             # Validating the type of facility user asks for and gives the details of hospitals.
+#             if facility == "hospital":
+#                 facilities_state = get_hospitals_by_state(state)
+#                 if len(facilities_state) != 0:
+#                     allfacilities = "\n".join(facilities_state)
+#                     dispatcher.utter_message("Hey, here is the address of the {} facilities in {} :- \n {} ".format(facility, locatistateon, allfacilities))
+#                 else:
+#                     dispatcher.utter_message("Sorry! No {} found in {}".format(facility,state))
+            
+#             # Validating the type of facility user asks for and gives the details of testcenters.
+#             if facility == "test center":
+#                 facilities_state = get_testcenters_by_state(state)
+#                 if len(facilities_state) != 0:
+#                     allfacilities = "\n".join(facilities_state)
+#                     dispatcher.utter_message("Hey, here is the address of the {} facilities in {} :- \n {}".format(facility, state, allfacilities))
+#                 else:
+#                     dispatcher.utter_message("Sorry! No {} found in {}".format(facility,state))
+                    
+#             # Validating the type of facility user asks for and gives the details of shelter homes.
+#             if facility == "shelter home":
+#                 facilities_state = get_shelterhomes_by_state(state)
+#                 if len(facilities_state) != 0:
+#                     allfacilities = "\n".join(facilities_state)
+#                     dispatcher.utter_message("Hey, here is the address of the {} facilities in {}  :- \n {} ".format(facility, state, allfacilities))
+#                 else:
+#                     dispatcher.utter_message("Sorry! No {} found in {}".format(facility,location))
+            
+
+#         except:
+#             dispatcher.utter_message("Sorry ! Some internal error happened :}")
+            
+#         return []
