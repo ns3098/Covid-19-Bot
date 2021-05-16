@@ -36,3 +36,8 @@ Actions for these features are added in actions.py file. Might complete later wh
 <p align="center">
   <img src="/screenshots/Screenshot from 2021-05-17 00-03-01.png">
 </p>
+
+### TODO (If required)
+
+1. Adding all the commented features in actions.py file.
+
