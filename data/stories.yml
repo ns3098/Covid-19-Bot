@@ -1,0 +1,127 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: actions_name_show
+  - intent: name_entry
+  - action: actions_name_show
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: actions_name_show
+  - intent: name_entry
+  - action: actions_name_show
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+
+
+- story: corona intro
+  steps:
+  - intent: corona_intro
+  - action: utter_corona_intro
+
+
+- story: corona spread
+  steps:
+  - intent: corona_spread
+  - action: utter_corona_spread
+
+- story: corona food spread
+  steps:
+  - intent: corona_food_spread
+  - action: utter_corona_food_spread
+
+- story: corona warm weather
+  steps:
+  - intent: corona_spread_warm
+  - action: utter_corona_spread_warm
+
+- story: corona risk
+  steps:
+  - intent: corona_spread_risk
+  - action: utter_corona_spread_risk
+
+- story: corona tracker path
+  steps:
+  - intent: greet
+  - action: actions_name_show
+  - intent: name_entry
+  - action: actions_name_show
+  - intent: corona_stats_check
+  - action: actions_check_prev_value_of_state_pin
+  - intent: corona_state_pin_detail
+  - action: actions_show_stats
+
+- story: corona tracker 2 path
+  steps:
+  - intent: greet
+  - action: actions_name_show
+  - intent: name_entry
+  - action: actions_name_show
+  - intent: corona_stats_check
+  - action: actions_check_prev_value_of_state_pin
+  - intent: affirm
+  - action: actions_show_stats
+
+- story: corona tracker 3 path
+  steps:
+  - intent: greet
+  - action: actions_name_show
+  - intent: name_entry
+  - action: actions_name_show
+  - intent: corona_stats_check
+  - action: actions_check_prev_value_of_state_pin
+  - intent: deny
+  - action: actions_show_stats
+
+
+- story: corona community spread path
+  steps:
+  - intent: corona_community
+  - action: utter_corona_community
+
+- story: corona mosquito path
+  steps:
+  - intent: corona_mosq_spread
+  - action: utter_corona_mosq_spread
+
+- story: corona prevent path
+  steps:
+  - intent: corona_prevent
+  - action: utter_corona_prevent
+
+- story: corona symptoms path
+  steps:
+  - intent: corona_symptoms
+  - action: utter_corona_symptoms
+
+- story: corona vaccine path
+  steps:
+  - intent: corona_vaccine
+  - action: utter_corona_vaccine
+
+- story: corona infected path
+  steps:
+  - intent: corona_infected person
+  - action: utter_corona_infected person
+
+
+
+- story: thanks path
+  steps:
+  - intent: Thanks
+  - action: utter_Thanks
+
+- story: who am i
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+
+  
